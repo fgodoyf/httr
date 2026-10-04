@@ -1,0 +1,5 @@
+.venv/
+data/raw/*
+!data/raw/SOURCES.md
+data/processed/
+__pycache__/
