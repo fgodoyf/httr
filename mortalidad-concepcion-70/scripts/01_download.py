@@ -42,13 +42,19 @@ TARGETS = {
                 "proyecciones-de-poblacion",
         "pattern": re.compile(r"(comuna|comunal).*(2002|2017|2035|proyecc)", re.I),
     },
+    "ine_proyecciones_regiones_base2017": {
+        "page": "https://www.ine.gob.cl/estadisticas/sociales/demografia-y-vitalidad/"
+                "proyecciones-de-poblacion",
+        "pattern": re.compile(r"(region|regional|pais|total).*(2002|2017|2035|proyecc)", re.I),
+    },
 }
 DATA_EXT = (".zip", ".csv", ".xlsx", ".xls", ".rar", ".7z")
 # Patrones para reconocer archivos dejados manualmente en data/raw/.
 MANUAL_PATTERNS = {
     "deis_defunciones_1990_2021": re.compile(r"(DEFUNCIONES|DEF).*(1990|2021)", re.I),
     "deis_defunciones_2022_actual": re.compile(r"(DEFUNCIONES|DEF).*(2022|SEMANA|ACTUAL)", re.I),
-    "ine_proyecciones_comunas_base2017": re.compile(r"(proyecc|estimac|ine|comuna)", re.I),
+    "ine_proyecciones_comunas_base2017": re.compile(r"(proyecc|estimac).*comuna", re.I),
+    "ine_proyecciones_regiones_base2017": re.compile(r"(proyecc|estimac).*(region|pais|total)", re.I),
 }
 
 
