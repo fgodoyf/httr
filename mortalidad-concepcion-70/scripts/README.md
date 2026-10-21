@@ -13,6 +13,37 @@ este documento con el mapeo definitivo.
 | Período | **2002–presente** en toda la serie (conteos y tasas), con una sola base INE (2017) y sin el quiebre territorial de 1995–96 |
 | Tramos con tasa | 70+, 70–79 y 80+. Los conteos van en 70–79, 80–89 y 90+. Si INE no separa 80–89 y 90+, esos dos tramos van sin tasa |
 | Tasa principal | Anualizada y ajustada por días del mes. La ×12 se guarda en una columna aparte |
+| Análisis (paso 4) | **Completo para cada una de las 18 unidades**: país, 16 regiones y Concepción (estacionalidad, tendencia, exceso 2020–2022, causas por capítulo CIE-10 y motor del peak invernal) |
+
+### 0.1 Consecuencias en el análisis y las salidas
+
+- **Mismo método en todas las unidades:** cada análisis se programa una vez,
+  como función de `geo_code`, y se aplica a las 18 unidades. No hay ajustes a
+  mano por región.
+- **Exceso de mortalidad:** el método principal es un modelo de Poisson
+  ajustado sobre 2015–2019, con tendencia lineal, mes calendario como factor y
+  `log(población)` como offset. El esperado de 2020–2022 sale de proyectar ese
+  modelo, con un intervalo de predicción del 95 %. Como control se reporta
+  también la media mensual 2015–2019 ± 2 DE. En unidades pequeñas
+  (Concepción, Aysén, Magallanes) el intervalo será ancho, y así se informa.
+- **Causas:** los 5 capítulos CIE-10 principales en 70+ por unidad, y la
+  contribución de J00–J99 (respiratorias) e I00–I99 (circulatorias) al exceso
+  de invierno (jun–ago) sobre verano (dic–feb).
+- **Gráficos:**
+  - Uno de paneles múltiples por tipo de gráfico (serie, perfil estacional,
+    exceso, causas), con 18 paneles en orden norte→sur y ejes comparables
+    (tasas).
+  - Un PNG individual por unidad en `output/por_unidad/<geo_code>/`.
+- **Tablas resumen:** una fila por unidad en
+  `output/AAAA-MM-DD_resumen_por_unidad.csv`. Incluye la razón
+  invierno/verano, el cambio de tendencia en conteos y en tasas, el exceso
+  2020, 2021 y 2022 (n y %), la top-5 de causas y el aporte respiratorio y
+  circulatorio al peak.
+- **Informe:** primero los hallazgos de Concepción y una comparación con su
+  región y con el país. Después, una página con los patrones regionales
+  (gradiente norte–sur de la estacionalidad, regiones con exceso atípico). El
+  detalle por unidad queda en el CSV resumen y en los gráficos, sin tablas
+  largas dentro del informe.
 
 ## 1. Fuentes y unidad de análisis
 
